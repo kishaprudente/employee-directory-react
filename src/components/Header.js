@@ -13,6 +13,7 @@ export default () => {
 
 const styles = {
 	header: {
+		marginBottom: 0,
 		color: "white",
 		display: "flex",
 		textAlign: "center",
