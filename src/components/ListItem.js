@@ -4,7 +4,7 @@ export default ({ employees }) => {
 	return (
 		<tbody>
 			{employees.map((employee) => (
-				<tr>
+				<tr key={employee.id}>
 					<td>
 						<img style={styles.image} src={employee.image} alt="avatar" />
 					</td>
