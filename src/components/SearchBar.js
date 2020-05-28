@@ -7,8 +7,9 @@ export default () => {
 				<input
 					className="form-control mr-sm-2"
 					type="search"
-					placeholder="Search"
+					placeholder="Search employees"
 					aria-label="Search"
+					onChange={(e) => console.log(e.target.value)}
 				/>
 			</form>
 		</nav>
