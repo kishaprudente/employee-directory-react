@@ -5,6 +5,7 @@ export default () => {
 		<div style={styles.header} className="jumbotron jumbotron-fluid bg-info">
 			<div className="container">
 				<h1 className="display-4">Employee Directory</h1>
+				<p>Get to know your team</p>
 			</div>
 		</div>
 	);
