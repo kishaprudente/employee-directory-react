@@ -3,21 +3,32 @@ import Table from "./Table";
 import employees from "../employees";
 
 const SearchBar = () => {
-	const [employeesState, setEmployeesState] = useState(employees);
-	const [searchState, setSearchState] = useState("");
+	// eslint-disable-next-line no-unused-vars
+	const [defaultState, setDefaultState] = useState({employees: [...employees]});
+	const [employeesState, setEmployeesState] = useState({employees: [...employees]});
+	const [search, setSearchState] = useState("");
+	const [sort, setSortState] = useState(false);
 
-	useEffect(() => { 
-		setEmployeesState(employees) 
+	useEffect(() => {
+		setEmployeesState({employees: employees})
 	}, []);
 
 	const searchEmployees = (query) => {
-		const filteredEmployees = employeesState.filter(
+		const filteredEmployees = employeesState.employees.filter(
 			(employee) => {
 				return employee.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
 			}
 		);
 		return filteredEmployees;
 	};
+
+	const handleSortButton = () => {
+		const sortEmployees = !sort
+		  ? employeesState.employees.sort((a, b) => (a.name > b.name ? 1 : -1))
+		  : defaultState.employees;
+		  setSortState(!sort);
+		  setEmployeesState({employees: sortEmployees})
+	  };
 
 	return (
 		<div>
@@ -28,12 +39,16 @@ const SearchBar = () => {
 						type="search"
 						placeholder="Search employees"
 						aria-label="Search"
-						value={searchState}
+						value={search}
 						onChange={(e) => setSearchState(e.target.value)}
 					/>
 				</form>
 			</nav>
-			<Table employees={searchEmployees(searchState)} />
+			<Table 
+				employees={searchEmployees(search)}
+				handleSortButton={handleSortButton}
+				sort={sort}
+			/>
 		</div>
 	);
 }

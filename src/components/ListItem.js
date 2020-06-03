@@ -4,7 +4,6 @@ export default ({ employees }) => {
 	return (
 		<tbody>
 			{employees
-				.sort((a, b) => (a.name > b.name ? 1 : -1))
 				.map((employee) => (
 					<tr key={employee.id}>
 						<td>
