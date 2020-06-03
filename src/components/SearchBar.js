@@ -3,18 +3,15 @@ import Table from "./Table";
 import employees from "../employees";
 
 const SearchBar = () => {
-	const [employeesState, setEmployeesState] = useState({
-		employees: employees
-	});
+	const [employeesState, setEmployeesState] = useState(employees);
 	const [searchState, setSearchState] = useState("");
 
 	useEffect(() => { 
-		setEmployeesState({ employees: employees }) 
+		setEmployeesState(employees) 
 	}, []);
 
 	const searchEmployees = (query) => {
-		console.log(query);
-		const filteredEmployees = employeesState.employees.filter(
+		const filteredEmployees = employeesState.filter(
 			(employee) => {
 				return employee.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
 			}
