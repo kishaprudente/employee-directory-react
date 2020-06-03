@@ -1,51 +1,44 @@
-import React, { Component } from "react";
+import React, {  useState, useEffect } from "react";
 import Table from "./Table";
 import employees from "../employees";
 
-class SearchBar extends Component {
-	state = {
-		employees: employees,
-		search: "",
-	};
+const SearchBar = () => {
+	const [employeesState, setEmployeesState] = useState({
+		employees: employees
+	});
+	const [searchState, setSearchState] = useState("");
 
-	componentDidMount() {
-		this.setState({ employees: employees });
-	}
+	useEffect(() => { 
+		setEmployeesState({ employees: employees }) 
+	}, []);
 
-	handleInputChange = (event) => {
-		const { value } = event.target;
-		this.setState({
-			search: value,
-		});
-	};
-
-	searchEmployees = (query) => {
-		const filteredEmployees = this.state.employees.filter(
-			(employee) =>
-				employee.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+	const searchEmployees = (query) => {
+		console.log(query);
+		const filteredEmployees = employeesState.employees.filter(
+			(employee) => {
+				return employee.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+			}
 		);
 		return filteredEmployees;
 	};
 
-	render() {
-		return (
-			<div>
-				<nav style={styles.navbar} className="navbar navbar-light bg-light">
-					<form className="form-inline">
-						<input
-							className="form-control mr-sm-2"
-							type="search"
-							placeholder="Search employees"
-							aria-label="Search"
-							value={this.state.search}
-							onChange={this.handleInputChange}
-						/>
-					</form>
-				</nav>
-				<Table employees={this.searchEmployees(this.state.search)} />
-			</div>
-		);
-	}
+	return (
+		<div>
+			<nav style={styles.navbar} className="navbar navbar-light bg-light">
+				<form className="form-inline">
+					<input
+						className="form-control mr-sm-2"
+						type="search"
+						placeholder="Search employees"
+						aria-label="Search"
+						value={searchState}
+						onChange={(e) => setSearchState(e.target.value)}
+					/>
+				</form>
+			</nav>
+			<Table employees={searchEmployees(searchState)} />
+		</div>
+	);
 }
 
 export default SearchBar;
