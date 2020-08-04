@@ -16,8 +16,7 @@ To install the development env, clone the repo, then run `npm install` and `npm 
 
 ## Usage
 
-- chirrup! is a progressive web app (PWA) deployed on Heroku.
-- Deployed: https://chirrup-app.herokuapp.com/
+- Deployed: https://kp-react-employees.herokuapp.com/
 
 Create a user account to get started.
 
