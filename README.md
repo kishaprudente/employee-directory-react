@@ -18,8 +18,6 @@ To install the development env, clone the repo, then run `npm install` and `npm 
 
 - Deployed: https://kp-react-employees.herokuapp.com/
 
-Create a user account to get started.
-
 ## Contributing
 
 To contribute to the project, please contact the team.
